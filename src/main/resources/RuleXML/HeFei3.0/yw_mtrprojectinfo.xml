@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">ifnull(KaiBiaoRoomXiaQu, PingBiaoRoomXiaQu)</group>
+		<url><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/ChangDiWorkFlow/KaiPingBiao_Detail.aspx?RowGuid={{yudingguid}}]]></url>
+	</report>
+	<rules>
+		<yudingtitle>
+			<required>true</required>
+		</yudingtitle>
+		<kaibiaodate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>pingbiaodate</max>
+		</kaibiaodate>
+		<pingbiaodate>
+			<required>true</required>
+			<min>kaibiaodate</min>
+		</pingbiaodate>
+	</rules>
+</datacleaning>

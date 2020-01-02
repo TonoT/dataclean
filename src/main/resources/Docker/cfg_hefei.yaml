@@ -1,0 +1,16 @@
+servertype: tomcat
+virtualname: DataCleaningService
+configlist:
+- filepath: WEB-INF/classes/jdbc.properties
+  params:
+    urlAddr: jdbc:mysql://172.17.130.43:3306/epointbid_hfbigdata_new?useSSL=true
+    username: root
+    password: 11111
+    
+- filepath: WEB-INF/classes/datacleaning.properties
+  params:
+    RuleXMLDic: HeFei
+    AllowIPs: 0:0:0:0:0:0:0:1;127.0.0.1;172.22.205.46;172.17.130.44
+    CleaningJobCron: 0 0 6 * * ?
+    ThreadCount: 5
+    LimitSizeEveryTime: 10000

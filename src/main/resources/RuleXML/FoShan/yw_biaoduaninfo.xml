@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/TenderingProject/BiaoDuan_Detail.aspx?RowGuid={{biaoduanguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/ProjectOrganize/ProjectOrganize_Detail.aspx?RowGuid={{projectguid}}]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisNC_HFZTB/Pages/BiaoDi/Project_Detail.aspx?RowGuid={{projectguid}}]]></nccq>
+			<kycq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisKY_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></kycq>
+			<tdjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/TDJYZtbMis_HF/Pages/DiKuaiReg/DiKuai_Detail.aspx?RowGuid={{biaoduanguid}}]]></tdjy>
+		</url>
+	</report>
+	<unique>
+		<column>biaoduanguid</column>
+	</unique>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<biaoduanname>
+			<required>true</required>
+		</biaoduanname>
+		<yusuanjine>
+			<min if="shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and jiaoyitype='JSGC'" round="2">zhongbiaojine</min>
+			<min if="shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and jiaoyitype='ZFCG' and IFNULL(IsZiGeBiao,'') !='1'" round="2">zhongbiaojine</min>
+		</yusuanjine>
+		<zhongbiaojine>
+			<max if="shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and jiaoyitype='JSGC'" round="2">yusuanjine</max>
+			<max if="shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and jiaoyitype='ZFCG' and IsZiGeBiao !='1'" round="2">yusuanjine</max>
+			<where if="(yusuanjine > zhongbiaojine) and (shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and IFNULL(IsZiGeBiao,'') !='1' and jiaoyitype='ZFCG') "> <![CDATA[yusuanjine/zhongbiaojine<100]]></where>
+			<where if="(yusuanjine > zhongbiaojine) and (shr_date is not null and IFNULL(IsFeiBiao,'') !='1' and jiaoyitype='JSGC') "> <![CDATA[yusuanjine/zhongbiaojine<100]]></where>
+		</zhongbiaojine>
+		<jiaoyitype>
+			<required>true</required>
+			<code>交易平台交易类型</code>
+		</jiaoyitype>
+	</rules>
+</datacleaning>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<url type="danwei">
+			<tbr><![CDATA[http://172.18.18.18/HYSYSZX/HuiYuanInfoMis2_HySYS/Pages/TBRInfo/TBRInfo_Detail.aspx?DanWeiType=&DanWeiGuid={{danweiguid}}&CurrentDanWeiGuid={{danweiguid}}]]></tbr>
+			<zbr><![CDATA[http://172.18.18.18/HYSYSZX/HuiYuanInfoMis2_Hysys/Pages/JianSheDwInfo/JianSheDwInfo_Detail.aspx?DanWeiType=&DanWeiGuid={{danweiguid}}&CurrentDanWeiGuid={{danweiguid}}]]></zbr>
+			<daili><![CDATA[http://172.18.18.18/HYSYSZX/HuiYuanInfoMis2_Hysys/Pages/DaiLiInfo/DaiLiInfo_Detail.aspx?DanWeiType=&DanWeiGuid={{danweiguid}}&CurrentDanWeiGuid={{danweiguid}}]]></daili>
+		</url>
+	</report>
+	<rules>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<biaoduanguid>
+			<required if="lurutype = 3">true</required>
+		</biaoduanguid>
+		<zhongbiaojine>
+			<min>0</min>
+		</zhongbiaojine>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

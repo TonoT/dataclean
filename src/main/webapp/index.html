@@ -1,0 +1,81 @@
+<html>
+<meta charset="UTF-8" />
+<head>
+<title>数据清洗服务</title>
+<style>
+.version {
+	position: absolute;
+	top: 5px;
+	right: 5px
+}
+
+.control {
+	padding: 5px 20px;
+}
+</style>
+</head>
+<body>
+	<h2>数据清洗服务</h2>
+	<div class="version">版本：3.0</div>
+	<div class="control">
+		生成脚本：
+		<button id="createtemptables">临时表脚本</button>
+		<button id="clearofficialtables">重新清洗脚本</button>
+	</div>
+	<div class="control">
+		操作：
+		<button id="cleanimmediately">立即执行一次清洗</button>
+		<button id="downloaderrorreporting">下载异常数据报告</button>
+	</div>
+	<hr>
+	<div id="console"></div>
+	<script src="./jquery-3.3.1.min.js"></script>
+	<script>
+		var $consoleDiv = $("#console");
+		$("#createtemptables").click(function() {
+			$.post("./rest/datacleaninginitservice/generateinitsql", function(data) {
+				var cons = [];
+				for ( var key in data) {
+					cons.push("###### " + key);
+					for (var i = 0; i < data[key].length; i++) {
+						cons.push(data[key][i] + ";");
+					}
+					cons.push("");
+				}
+				addConsole(cons);
+			});
+		});
+
+		$("#clearofficialtables").click(function() {
+			$.post("./rest/datacleaninginitservice/generateclearsql", function(data) {
+				var cons = [];
+				for ( var key in data) {
+					cons.push("###### " + key);
+					for (var i = 0; i < data[key].length; i++) {
+						cons.push(data[key][i] + ";");
+					}
+					cons.push("");
+				}
+				addConsole(cons);
+			});
+		});
+
+		$("#downloaderrorreporting").click(function() {
+			window.open("./rest/datacleaningreportservice/exportexcel");
+		});
+
+		$("#cleanimmediately").click(function() {
+			$.post("./rest/cleanimmediately_asyn", function(data) {
+				addConsole([ data ]);
+			});
+		});
+
+		function addConsole(data) {
+			$consoleDiv.html("");
+			for (var i = 0; i < data.length; i++) {
+				$consoleDiv.append(data[i] + "</br>");
+			}
+		}
+	</script>
+</body>
+</html>

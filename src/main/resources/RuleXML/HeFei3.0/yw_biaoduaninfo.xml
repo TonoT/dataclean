@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/TenderingProject/BiaoDuan_Detail.aspx?RowGuid={{biaoduanguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/ProjectOrganize/ProjectOrganize_Detail.aspx?RowGuid={{projectguid}}]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisNC_HFZTB/Pages/BiaoDi/Project_Detail.aspx?RowGuid={{projectguid}}]]></nccq>
+			<kycq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisKY_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></kycq>
+			<tdjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/TDJYZtbMis_HF/Pages/DiKuaiReg/DiKuai_Detail.aspx?RowGuid={{biaoduanguid}}]]></tdjy>
+		</url>
+	</report>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<biaoduanname>
+			<required>true</required>
+		</biaoduanname>
+		<kaibiaodate>
+			<min if="jiaoyitype in ('JSGC','ZFCG')">config:TheEarliestDate</min>
+			<max dateformat="%Y-%m-%d">zhongbiaodate</max>
+		</kaibiaodate>
+		<zhongbiaodate>
+			<required if="zhongbiaojine > 0">true</required>
+			<min dateformat="%Y-%m-%d">kaibiaodate</min>
+		</zhongbiaodate>
+		<yusuanjine>
+			<min if="zhongbiaodate is not null and jiaoyitype in ('JSGC','ZFCG')" round="2">zhongbiaojine</min>
+			<max if="zhongbiaodate is not null and jiaoyitype in ('CQJY', 'NCCQ', 'KYCQ', 'TDJY')" round="2">zhongbiaojine</max>
+		</yusuanjine>
+		<zhongbiaojine>
+			<min
+				if="zhongbiaodate is not null and jiaoyitype in ('CQJY', 'NCCQ', 'KYCQ', 'TDJY')" round="2">yusuanjine</min>
+			<max if="zhongbiaodate is not null and jiaoyitype in ('JSGC','ZFCG')" round="2">yusuanjine</max>
+		</zhongbiaojine>
+		<zhaobiaofangshi>
+			<required>true</required>
+			<code allowtext="true">交易平台招标方式,交易平台采购方式,交易平台产权交易招标方式,交易平台土地交易招标方式,交易平台矿业招标方式
+			</code>
+		</zhaobiaofangshi>
+		<jiaoyitype>
+			<required>true</required>
+			<code>交易平台交易类型</code>
+		</jiaoyitype>
+	</rules>
+</datacleaning>

@@ -1,0 +1,16 @@
+#配置文件的文件夹
+RuleXMLDic={{ .Env.RuleXMLDic }}
+
+#允许访问的ip，多个用分号；隔开
+AllowIPs={{ .Env.AllowIPs }}
+
+#清洗作业的定时配置
+CleaningJobCron={{ .Env.CleaningJobCron }}
+
+#线程数，默认10
+ThreadCount={{ .Env.ThreadCount }}
+#每条线程每轮清洗读取的数据条数，默认5000
+LimitSizeEveryTime={{ .Env.LimitSizeEveryTime }}
+
+#########################################可用于xml配置的值
+TheEarliestDate=1990-01-01 00:00:00

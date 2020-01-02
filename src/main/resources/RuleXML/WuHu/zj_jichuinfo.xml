@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<pw_name>
+			<required>true</required>
+		</pw_name>
+		<pwidcard>
+			<cleanimpl>cleaning_idcard</cleanimpl>
+		</pwidcard>
+		<chushengdate>
+			<required>true</required>
+			<min>date_add(now(), interval -70 year)</min>
+			<max>date_add(now(), interval -18 year)</max>
+		</chushengdate>
+	</rules>
+</datacleaning>

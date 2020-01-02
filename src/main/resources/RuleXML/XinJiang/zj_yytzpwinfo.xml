@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/PBZJMis_HFZTB/Center/PingWeiPrint/PingWeiPrint_Detial.aspx?RowGuid={{projectguid}}&ProjectGuid={{projectguid}}&Type=JSGC]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/PBZJMis_HFZTB/Center/PingWeiPrint/PingWeiPrint_Detial.aspx?RowGuid={{projectguid}}&ProjectGuid={{projectguid}}&Type=ZFCG]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/PBZJMis_HFZTB/Center/PingWeiPrint/PingWeiPrint_Detial.aspx?RowGuid={{projectguid}}&ProjectGuid={{projectguid}}&Type=CQJY]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/PBZJMis_HFZTB/Center/PingWeiPrint/PingWeiPrint_Detial.aspx?RowGuid={{projectguid}}&ProjectGuid={{projectguid}}&Type=NCCQ]]></nccq>
+		</url>
+	</report>
+	<rules>
+		<pingweiguid>
+			<required>true</required>
+		</pingweiguid>
+		<chouqudate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max dateformat="%Y-%m-%d">ifnull(feedbacktime, kaibiaodate)</max>
+		</chouqudate>
+		<feedbacktime>
+			<min dateformat="%Y-%m-%d">chouqudate</min>
+			<max dateformat="%Y-%m-%d">kaibiaodate</max>
+		</feedbacktime>
+		<kaibiaodate>
+			<min dateformat="%Y-%m-%d">chouqudate</min>
+		</kaibiaodate>
+	</rules>
+</datacleaning>

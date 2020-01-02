@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<Htqstime>
+			<required>true</required>
+		</Htqstime>
+		<zhongbiaodate>
+			<required>true</required>
+		</zhongbiaodate>
+		<ZBFileEndDate>
+			<required>true</required>
+		</ZBFileEndDate>
+		<ZBFileDate>
+			<required>true</required>
+		</ZBFileDate>
+	</rules>
+</datacleaning>

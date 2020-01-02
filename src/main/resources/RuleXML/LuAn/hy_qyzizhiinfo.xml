@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<showzy>
+			<required>true</required>
+		<where if="DanWeiGuid in (select DanWeiGuid from hy_danweiinfo where SUBSTRING(AreaCode,1,4)='3415') "> <![CDATA[    ShowZY  not like '%特级%'  ]]></where >
+		</showzy>
+		<zizhicode>
+			<required>true</required>
+		</zizhicode>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

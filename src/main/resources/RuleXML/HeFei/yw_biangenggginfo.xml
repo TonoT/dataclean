@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/ZBFileChengQingNew/ChengQing_Detail.aspx?RowGuid={{gonggaoguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/DaYi/DaYi_Detail.aspx?RowGuid={{gonggaoguid}}]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_HFZTB/Pages/DaYi/DaYi_Detail.aspx?RowGuid={{gonggaoguid}}]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisNC_HFZTB/Pages/DaYi/DaYi_Detail.aspx?RowGuid={{gonggaoguid}}]]></nccq>
+		</url>
+	</report>
+	<unique>
+		<column>gonggaotitle</column>
+	</unique>
+	<rules>
+		<gonggaotitle>
+			<required>true</required>
+		</gonggaotitle>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

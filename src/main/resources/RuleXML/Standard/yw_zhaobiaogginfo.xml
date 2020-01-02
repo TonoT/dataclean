@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+	</report>
+	<rules>
+		<gonggaotitle>
+			<required>true</required>
+		</gonggaotitle>
+		<gonggaostratdate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+		</gonggaostratdate>
+		<gonggaoenddate>
+			<required>true</required>
+		</gonggaoenddate>
+	</rules>
+</datacleaning>

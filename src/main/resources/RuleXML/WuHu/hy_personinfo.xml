@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<personname>
+			<required>true</required>
+		</personname>
+		<ziyezige>
+			<required>true</required>
+			<code>交易平台评委职称类型</code>
+		</ziyezige>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

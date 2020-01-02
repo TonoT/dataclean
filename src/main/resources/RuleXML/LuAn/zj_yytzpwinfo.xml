@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<pingweiguid>
+			<required>true</required>
+		</pingweiguid>
+		<chouqudate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>ifnull(feedbacktime, kaibiaodate)</max>
+		</chouqudate>
+		<feedbacktime>
+			<min>chouqudate</min>
+			<max>kaibiaodate</max>
+		</feedbacktime>
+		<kaibiaodate>
+			<min>chouqudate</min>
+		</kaibiaodate>
+	</rules>
+</datacleaning>

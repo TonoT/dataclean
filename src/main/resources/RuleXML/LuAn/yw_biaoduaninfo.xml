@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+	</report>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<biaoduanname>
+			<required>true</required>
+		</biaoduanname>
+		<kaibiaodate>
+			<min>config:TheEarliestDate</min>
+			<max dataformat="%Y-%m-%d">zhongbiaodate</max>
+		</kaibiaodate>
+		<zhongbiaodate>
+			<required if="zhongbiaojine > 0">true</required>
+			<min dataformat="%Y-%m-%d">kaibiaodate</min>
+		</zhongbiaodate>
+		<yusuanjine>
+			<min if="zhongbiaodate is not null and jiaoyitype in ('JSGC','ZFCG')">zhongbiaojine</min>
+			<max
+				if="zhongbiaodate is not null and jiaoyitype in ('CQJY', 'NCCQ', 'KYCQ', 'TDJY')">zhongbiaojine</max>
+		</yusuanjine>
+		<zhongbiaojine>
+			<max if="zhongbiaodate is not null and jiaoyitype in ('CQJY', 'NCCQ', 'KYCQ', 'TDJY')">yusuanjine*3</max>
+			<min if="zhongbiaodate is not null and jiaoyitype in ('JSGC','ZFCG')">yusuanjine/3</min>
+		</zhongbiaojine>
+		<zhaobiaofangshi>
+			<required>true</required>
+			<code>交易平台招标方式,交易平台采购方式,交易平台产权交易招标方式,交易平台土地交易招标方式,交易平台矿业招标方式
+			</code>
+		</zhaobiaofangshi>
+		<jiaoyitype>
+			<required>true</required>
+			<code>交易平台交易类型</code>
+		</jiaoyitype>
+	</rules>
+</datacleaning>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<showzy>
+			<required>true</required>
+		</showzy>
+		<zizhicode>
+			<required>true</required>
+		</zizhicode>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/BMChaKan/BaoMing_List.aspx?BiaoDuanGuid={{biaoduanguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/BaoMing/BaoMing_Detail.aspx?RowGuid={{biaoduanguid}}]]></zfcg>
+			<cqjy><![CDATA[http://www.hfztb.cn/HY/TDJYZtbMis_HF/Pages/HY_TouBiaoBaoMing/DiKuai_Detail.aspx?DiKuaiGuid={{biaoduanguid}}&DKState=0]]></cqjy>
+			<tdjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_HFZTB/Pages/BaoMing/BaoMing_Detail.aspx?RowGuid={{biaoduanguid}}]]></tdjy>
+		</url>
+	</report>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<baomingdate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max dateformat="%Y-%m-%d">isnull(jiaonabzjdate, now())</max>
+		</baomingdate>
+		<jiaonabzjdate>
+			<min dateformat="%Y-%m-%d">baomingdate</min>
+			<max>now()</max>
+		</jiaonabzjdate>
+	</rules>
+</datacleaning>

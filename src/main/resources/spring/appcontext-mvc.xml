@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 解决中文乱码 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 本地缓存,采用框架统一的EH -->
+	<bean id="ehcacheManager" class="com.epoint.core.utils.memory.EHCacheUtil"
+		factory-method="getCacheManager" />
+
+	<bean id="resourceCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcacheManager" />
+	</bean>
+
+	<bean id="cache" factory-bean="resourceCacheManager"
+		factory-method="getCache">
+		<constructor-arg value="resource" />
+	</bean>
+
+	<!-- 扫描controller -->
+	<context:component-scan base-package="com.epoint.cleaning"></context:component-scan>
+
+	<!-- Spring 上下文环境工具 -->
+	<bean id="springContextUtil" class="com.epoint.frame.spring.util.SpringContextUtil" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+
+	<!-- 支持返回json(避免IE在ajax请求时，返回json出现下载 ) -->
+	<bean id="utf8Charset" class="java.nio.charset.Charset"
+		factory-method="forName">
+		<constructor-arg value="UTF-8" />
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<constructor-arg ref="utf8Charset" />
+				</bean>
+				<bean id="mappingJacksonHttpMessageConverter"
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+	<bean
+		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+	<!-- 静态资源处理 -->
+	<mvc:resources mapping="/**/[*.html]" location="/"
+		cache-period="0">
+		<mvc:resource-chain resource-cache="true">
+			<mvc:resolvers>
+				<bean
+					class="org.springframework.web.servlet.resource.GzipResourceResolver" />
+				<bean
+					class="org.springframework.web.servlet.resource.CachingResourceResolver">
+					<constructor-arg ref="cache" />
+				</bean>
+			</mvc:resolvers>
+		</mvc:resource-chain>
+	</mvc:resources>
+
+	<!-- 引入Druid监控Spring配置 -->
+	<import resource="spring-druid.xml" />
+
+	<!-- 处理代理类访问不了public方法的问题 -->
+	<aop:config proxy-target-class="true"></aop:config>
+</beans>

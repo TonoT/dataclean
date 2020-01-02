@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">ifnull(KaiBiaoRoomXiaQu, PingBiaoRoomXiaQu)</group>
+	</report>
+	<rules>
+		<yudingtitle>
+			<required>true</required>
+		</yudingtitle>
+		<kaibiaodate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>pingbiaodate</max>
+		</kaibiaodate>
+		<pingbiaodate>
+			<required>true</required>
+			<min>kaibiaodate</min>
+		</pingbiaodate>
+	</rules>
+</datacleaning>

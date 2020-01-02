@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/TenderingProject/TenderingProject_WorkFlow.aspx?RowGuid={{projectguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/ProjectOrganize/ProjectOrganize_Detail.aspx?RowGuid={{projectguid}}]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisNC_HFZTB/Pages/BiaoDi/Project_Detail.aspx?RowGuid={{projectguid}}]]></nccq>
+			<kycq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisKY_HFZTB/Pages/BiaoDi/ProjectShouLi_Detail.aspx?RowGuid={{projectguid}}]]></kycq>
+			<tdjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/TDJYZtbMis_HF/Pages/DiKuaiReg/DiKuai_Detail.aspx?RowGuid={{biaoduanguid}}]]></tdjy>
+		</url>
+	</report>
+	<unique>
+	</unique>
+	<rules>
+		<projectguid>
+			<required>true</required>
+		</projectguid>
+		<projectname>
+			<required>true</required>
+		</projectname>
+		<projectno>
+			<required>true</required>
+		</projectno>
+		<projectjine>
+			<min>0</min>
+		</projectjine>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

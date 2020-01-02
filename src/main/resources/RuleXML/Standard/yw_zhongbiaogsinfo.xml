@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+	</report>
+	<rules>
+		<gonggaotitle>
+			<required>true</required>
+		</gonggaotitle>
+		<gonggaostratdate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>gonggaoenddate</max>
+		</gonggaostratdate>
+		<gonggaoenddate>
+			<required>true</required>
+			<min>gonggaostratdate</min>
+			<max>date_add(gonggaostratdate, interval 6 month)</max>
+		</gonggaoenddate>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+		</shr_date>
+	</rules>
+</datacleaning>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<url type="danwei">
+			<tbr><![CDATA[http://172.18.18.18/HYSYSZX/HuiYuanInfoMis2_HySYS/Pages/TBRPMInfo/PM_Detail.aspx?RowGuid={{personguid}}&ProcessVersionInstanceGuid=&DanWeiType=&CurrentDanWeiGuid=&DanWeiGuid={{danweiguid}}]]></tbr>
+			<daili><![CDATA[http://www.hfztb.cn/HYSysHY/HuiYuanInfoMis2_Hysys/Pages/DaiLiPeopleInfo/People_Detail.aspx?RowGuid={{personguid}}&DaiLiGuid=&DanWeiGuid={{danweiguid}}&ViewType=1]]></daili>
+		</url>
+	</report>
+	<rules>
+		<personname>
+			<required>true</required>
+		</personname>
+		<ziyezige>
+			<required>true</required>
+			<code>交易平台评委职称类型</code>
+		</ziyezige>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

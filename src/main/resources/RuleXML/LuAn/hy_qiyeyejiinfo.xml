@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+	</report>
+	<rules>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<biaoduanguid>
+			<required if="lurutype = 3">true</required>
+		</biaoduanguid>
+		<zhongbiaojine>
+			<min>0</min>
+		</zhongbiaojine>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>now()</max>
+		</shr_date>
+	</rules>
+</datacleaning>

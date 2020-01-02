@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+	</report>
+	<rules>
+		<biaoduanguid>
+			<required>true</required>
+		</biaoduanguid>
+		<danweiguid>
+			<required>true</required>
+		</danweiguid>
+		<baomingdate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>isnull(jiaonabzjdate, now())</max>
+		</baomingdate>
+		<jiaonabzjdate>
+			<min>baomingdate</min>
+			<max>now()</max>
+		</jiaonabzjdate>
+	</rules>
+</datacleaning>

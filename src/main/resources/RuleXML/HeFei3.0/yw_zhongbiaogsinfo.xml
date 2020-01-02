@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datacleaning>
+	<report>
+		<group type="xiaqu">platformcode</group>
+		<url type="biaoduan">
+			<jsgc><![CDATA[http://172.18.18.18/HFTPFrame_ZX/JSGCZtbMis2_HFZTB/Pages/ZhongBiaoGongShi/ZBGS_Detail.aspx?RowGuid={{gonggaoguid}}]]></jsgc>
+			<zfcg><![CDATA[http://172.18.18.18/HFTPFrame_ZX/ZFCGZtbMis_HFZTB/Pages/ZhongBiaoGongShi/ZhongBiaoGS_Detail.aspx?RowGuid={{gonggaoguid}}]]></zfcg>
+			<cqjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMis_hfztb/Pages/ZhongBiaoGongShi/ZhongBiaoGS_Detail.aspx?RowGuid={{gonggaoguid}}]]></cqjy>
+			<nccq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisNC_hfztb/Pages/ZhongBiaoGongShi/ZhongBiaoGS_Detail.aspx?RowGuid={{gonggaoguid}}]]></nccq>
+			<kycq><![CDATA[http://172.18.18.18/HFTPFrame_ZX/CQJYZtbMisKY_hfztb/Pages/ZhongBiaoGongShi/ZhongBiaoGS_Detail.aspx?RowGuid={{gonggaoguid}}]]></kycq>
+			<tdjy><![CDATA[http://172.18.18.18/HFTPFrame_ZX/TDJYZtbMis_HF/Pages/ZhongBiaoGongGao/ZhongBiaoGG_Detail.aspx?RowGuid={{gonggaoguid}}]]></tdjy>
+		</url>
+	</report>
+	<rules>
+		<gonggaotitle>
+			<required>true</required>
+		</gonggaotitle>
+		<gonggaostratdate>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+			<max>gonggaoenddate</max>
+		</gonggaostratdate>
+		<gonggaoenddate>
+			<required if="JiaoYiType != 'ZFCG'">true</required>
+			<min>gonggaostratdate</min>
+			<max if="JiaoYiType != 'CQJY'">date_add(gonggaostratdate, interval 6 month)</max>
+		</gonggaoenddate>
+		<shr_date>
+			<required>true</required>
+			<min>config:TheEarliestDate</min>
+		</shr_date>
+	</rules>
+</datacleaning>
